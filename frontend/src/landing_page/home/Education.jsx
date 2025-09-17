@@ -2,10 +2,10 @@ import React from 'react'
 
 function Education() {
     return ( 
-          <div className='container'>
+          <div className='container mt-5 text-muted'>
             <div className='row'>
                 <div className='col-6'>
-                  <img src="/media/images/education.svg" alt="" style={{width:"70%"}} />
+                  <img  className='ms-5 mb-5' src="/media/images/education.svg" alt="" style={{width:"70%"}} />
                 </div>
                 <div className='col-6'>
                     <h1 className='mb-3 fs-2'>Free and open market education</h1>
