@@ -69,3 +69,17 @@ button:focus-visible {
 .nav-link{
   margin-left: 40px;
 }
+.social-icons a {
+    font-size: 1.2rem; /* Size of social icons */
+    margin-right: 10px;
+    color: #bbb;
+}
+footer a {
+    /* color: #afa7a7; Lighter link color */
+    text-decoration: none;
+    margin-bottom: 15px; 
+    /* display: block; Make links block level for better spacing */
+}
+.h a:hover {
+    color: #fff;
+}
