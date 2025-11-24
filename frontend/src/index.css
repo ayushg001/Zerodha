@@ -83,3 +83,30 @@ footer a {
 .h a:hover {
     color: #fff;
 }
+
+#supportHero{
+  background-color: rgb(56, 126, 209);
+  color: white;
+}
+#supportHero a{
+  color: white;
+}
+#supportWrapper{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 150px;
+}
+#supportHero input{
+  border-radius: 10px;
+  border: none;
+  padding: 20px 50px;
+  width: 80%;
+  font-size: 15 px;
+}
+#supportLinks a{
+  margin-right: 20px;
+  font-size: 15px;
+}
+#supportSection1 {
+  margin-left: px;
+}
