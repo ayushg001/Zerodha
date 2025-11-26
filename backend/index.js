@@ -10,6 +10,12 @@ const mongoose = require('mongoose');
 const PORT = process.env.PORT || 3002;
 const url = process.env.MONGO_URL;
 
+const cors = require("cors");
+const bodyParser = require("body-parser");
+
+app.use(cors());
+app.use(bodyParser.json())
+
 app.get("/addHoldings" , async (req, res) =>{
     let tempHoldings = [
   {
@@ -176,6 +182,17 @@ app.get("/addPositions" , async (req, res) =>{
     });
         res.send("Done position!")
 });
+
+app.get("/allHoldings" , async ( req,res) => {
+    let allHoldings = await HoldingsModel.find({});
+    res.json(allHoldings);
+});
+
+app.get("/allPositions" , async ( req,res) => {
+    let allPositions = await PositionModel.find({});
+    res.json(allPositions);
+});
+
 
 app.listen( PORT , () => {
     console.log("Server is listening !");
