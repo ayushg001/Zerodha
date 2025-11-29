@@ -10,14 +10,29 @@ const UserContext = createContext({
 
 export const UserProvider = (props) => {
   const [isBuyWindowOpen, setIsBuyWindowOpen] = useState(false);
+   const [isSellWindowOpen, setIsSetWindowOpen] = useState(false);
+
   const [selectedStockUID, setSelectedStockUID] = useState("");
 
+
+  //Buy
   const handleOpenBuyWindow = (uid) => {
     setIsBuyWindowOpen(true);
     setSelectedStockUID(uid);
   };
      
   const handleCloseBuyWindow = () => {
+    setIsBuyWindowOpen(false);
+    setSelectedStockUID("");
+  };
+
+  //Sell
+   const handleOpenSellWindow = (uid) => {
+    setIsBuyWindowOpen(true);
+    setSelectedStockUID(uid);
+  };
+     
+  const handleCloseSellWindow = () => {
     setIsBuyWindowOpen(false);
     setSelectedStockUID("");
   };
