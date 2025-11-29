@@ -6,9 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import { useState } from 'react';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import FormControl from '@mui/material/FormControl';
-import { Link } from "react-router-dom";
-
+  import FormControl from '@mui/material/FormControl';
 
 function Signup() {
     const [showPassword, setShowPassword] = useState(false)
@@ -36,7 +34,7 @@ function Signup() {
         </div>
          <div className="col-6">
             <form className="" action="">
-                     <h3 className="mt-5" style={{opacity:"80%"}}>Signup now</h3>
+                     <h3 className="mt-5" style={{opacity:"80%"}}>Signin now</h3>
                      <p className="text-muted" style={{marginTop:"-5px"}}>Or track your existing application</p>
                      <TextField className='mt-2' id="outlined-basic" label="Name" variant="outlined"  required/>  
                       <TextField className='mt-2 mx-5' id="outlined-basic" label="E-Mail" variant="outlined"  required/>
@@ -69,11 +67,11 @@ function Signup() {
           style={{ width:"200px", margin: "0 auto" }}
         >
           {" "}
-         Sign up 
+         Sign in 
         </button>
                      
             </form>
-            <p style={{marginTop:"-30px"}}>Already have an account ? <a href="" style={{textDecoration:"none"}}> Sign in</a> </p>
+            <p style={{marginTop:"-30px"}}>Don&apos;t have an account?<a href="" style={{textDecoration:"none"}}> Sign up</a> </p>
            
          </div>
       </div>

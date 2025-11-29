@@ -1,6 +1,8 @@
 import  {  createContext,  useState } from "react";
 
 import BuyActionWindow from "./BuyActionWindow";
+import SellActionWindow from "./SellActionWindow";
+
 
 const UserContext = createContext({
   openBuyWindow: (uid) => {},
@@ -10,7 +12,7 @@ const UserContext = createContext({
 
 export const UserProvider = (props) => {
   const [isBuyWindowOpen, setIsBuyWindowOpen] = useState(false);
-   const [isSellWindowOpen, setIsSetWindowOpen] = useState(false);
+   const [isSellWindowOpen, setIsSellWindowOpen] = useState(false);
 
   const [selectedStockUID, setSelectedStockUID] = useState("");
 
@@ -28,12 +30,12 @@ export const UserProvider = (props) => {
 
   //Sell
    const handleOpenSellWindow = (uid) => {
-    setIsBuyWindowOpen(true);
+    setIsSellWindowOpen(true);
     setSelectedStockUID(uid);
   };
      
   const handleCloseSellWindow = () => {
-    setIsBuyWindowOpen(false);
+    setIsSellWindowOpen(false);
     setSelectedStockUID("");
   };
 
@@ -42,10 +44,13 @@ export const UserProvider = (props) => {
       value={{
         openBuyWindow: handleOpenBuyWindow,
         closeBuyWindow: handleCloseBuyWindow,
+        openSellWindow : handleOpenSellWindow,
+        closeSellWindow : handleCloseSellWindow,
       }}
     >
       {props.children}
       {isBuyWindowOpen && <BuyActionWindow uid={selectedStockUID} />}
+      {isSellWindowOpen &&  <SellActionWindow uid={selectedStockUID}></SellActionWindow>}
     </UserContext.Provider>
   );
 };
