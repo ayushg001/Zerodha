@@ -8,14 +8,22 @@ const {OrdersModel} = require("./model/OrdersModel")
 
 const mongoose = require('mongoose');
 
+const AuthRouter = require('./routes/AuthRouter');  // authentication
+
 const PORT = process.env.PORT || 3002;
 const url = process.env.MONGO_URL;
 
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-app.use(cors());
+app.use(cors({
+  origin : PORT,
+  credentials : true,
+}));
+
 app.use(bodyParser.json())
+
+app.use("/auth" , AuthRouter)
 
 app.get("/addHoldings" , async (req, res) =>{
     let tempHoldings = [

@@ -7,9 +7,47 @@ import { useState } from 'react';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
   import FormControl from '@mui/material/FormControl';
+  import { Link} from 'react-router-dom';
+  import axios from "axios";
 
-function Signup() {
+function Signin() {
     const [showPassword, setShowPassword] = useState(false)
+    const [ form , setForm ] = useState({ email : "" , password : ""})
+
+    // error message
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+    setError("");
+  };
+
+  const handleLogin = async (e) =>{
+    e.preventDefault();
+    console.log(form);
+    try {
+      const res = await axios.post( "http://localhost:3002/auth/login" , form);
+      console.log(res)
+      const token = res.data.jwtToken;
+      console.log("token found")
+      if (!token) {
+        setError("Token missing in response");
+        return;
+      }
+      //stores the token locally
+      localStorage.setItem("jwtToken" , token);
+
+      //redirect to dashboard 
+      window.location.href = "http://localhost:5174/";
+      
+    }  catch(err){
+            if (err.response && err.response.data.message) {
+              setError(err.response.data.message);
+            } else {
+              setError("Something went wrong");
+            }
+    }
+  }
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -33,14 +71,18 @@ function Signup() {
              <img src="media/images/account_open.svg" className="p-3 mt-3" style={{width:"80%" , marginLeft:"110px"}} alt="" />
         </div>
          <div className="col-6">
-            <form className="" action="">
-                     <h3 className="mt-5" style={{opacity:"80%"}}>Signin now</h3>
+            <form onSubmit={handleLogin} action="">
+                     <h3 className="mt-5" style={{opacity:"80%"}}>Login now</h3>
                      <p className="text-muted" style={{marginTop:"-5px"}}>Or track your existing application</p>
-                     <TextField className='mt-2' id="outlined-basic" label="Name" variant="outlined"  required/>  
-                      <TextField className='mt-2 mx-5' id="outlined-basic" label="E-Mail" variant="outlined"  required/>
+                     {/* <TextField className='mt-2' id="outlined-basic" label="Name" variant="outlined"  required/>   */}
+                  <TextField className='mt-2 mx-5' id="outlined-basic" label="E-Mail" variant="outlined" name="email" onChange={handleChange}  value={form.email} required/>
+                      <br />
                       <FormControl className='mt-4' sx={{  width: '25ch' }} variant="outlined">
                             <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                             <OutlinedInput
+                                name="password"
+                                value={form.password}
+                                onChange={handleChange}
                                 id="outlined-adornment-password"
                                 type={showPassword ? 'text' : 'password'}
                                 endAdornment={
@@ -61,17 +103,22 @@ function Signup() {
                                 label="Password"
                             />
                          </FormControl>
+                          {error && <p style={{ color: "red", marginTop: "10px" }}>{error}</p>}
                          <br />
                           <button
           className="p-2 btn btn-primary fs-5 mb-5 mt-4"
           style={{ width:"200px", margin: "0 auto" }}
         >
           {" "}
-         Sign in 
+         Log in 
         </button>
                      
             </form>
-            <p style={{marginTop:"-30px"}}>Don&apos;t have an account?<a href="" style={{textDecoration:"none"}}> Sign up</a> </p>
+            <p style={{marginTop:"-30px"}}>Don&apos;t have an account?
+               <Link style={{textDecoration: "none"}} to="/signup">
+              Sign up
+              </Link>
+            </p>
            
          </div>
       </div>
@@ -79,4 +126,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default Signin;
