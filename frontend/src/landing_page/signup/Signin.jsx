@@ -38,7 +38,7 @@ function Signin() {
       localStorage.setItem("jwtToken" , token);
 
       //redirect to dashboard 
-      window.location.href = "http://localhost:5174/";
+      window.location.href = "https://zerodha-dashboard-lecc.onrender.com/";
       
     }  catch(err){
             if (err.response && err.response.data.message) {
