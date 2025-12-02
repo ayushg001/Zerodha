@@ -26,7 +26,7 @@ function Signin() {
     e.preventDefault();
     console.log(form);
     try {
-      const res = await axios.post( "http://localhost:3002/auth/login" , form);
+      const res = await axios.post( "https://zerodha-backend-6i13.onrender.com/auth/login" , form);
       console.log(res)
       const token = res.data.jwtToken;
       console.log("token found")
