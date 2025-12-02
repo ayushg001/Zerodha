@@ -73,7 +73,7 @@ function Signup() {
             setError("");
 
         try {
-          axios.post("https://zerodha-backend-6i13.onrender.com/auth/signup" , form); // form has name , email, password.
+         await axios.post("https://zerodha-backend-6i13.onrender.com/auth/signup" , form); // form has name , email, password.
             console.log(form);
 
           // if success + navigate user
