@@ -29,14 +29,7 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin: function(origin, callback){
-    // allow requests with no origin (like curl, Postman)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      return callback(new Error('CORS: Not allowed by origin ' + origin), false);
-    }
-    return callback(null, true);
-  },
+  origin: ["https://zerodha-frontend-sha2.onrender.com/", 'https://zerodha-dashboard-lecc.onrender.com/' ],
   credentials: true
 }));
 
