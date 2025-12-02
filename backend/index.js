@@ -16,9 +16,28 @@ const url = process.env.MONGO_URL;
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
+// app.use(cors({
+//   origin : PORT,
+//   credentials : true,
+// }));
+
+const allowedOrigins = [
+  'http://localhost:5173',                    // Vite dev
+  'http://localhost:3000',                    // CRA dev (if used)
+  'https://zerodha-frontend-sha2.onrender.com/',    // replace with your Netlify URL
+  'https://zerodha-dashboard-lecc.onrender.com/'// if you hosted dashboard frontend on Render
+];
+
 app.use(cors({
-  origin : PORT,
-  credentials : true,
+  origin: function(origin, callback){
+    // allow requests with no origin (like curl, Postman)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      return callback(new Error('CORS: Not allowed by origin ' + origin), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true
 }));
 
 app.use(bodyParser.json())
