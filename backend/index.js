@@ -21,15 +21,10 @@ const bodyParser = require("body-parser");
 //   credentials : true,
 // }));
 
-const allowedOrigins = [
-  'http://localhost:5173',                    // Vite dev
-  'http://localhost:3000',                    // CRA dev (if used)
-  'https://zerodha-frontend-sha2.onrender.com/',    // replace with your Netlify URL
-  'https://zerodha-dashboard-lecc.onrender.com/'// if you hosted dashboard frontend on Render
-];
+
 
 app.use(cors({
-  origin: ["https://zerodha-frontend-sha2.onrender.com/", 'https://zerodha-dashboard-lecc.onrender.com/' ],
+  origin: ["https://zerodha-frontend-sha2.onrender.com", 'https://zerodha-dashboard-lecc.onrender.com' ],
   credentials: true
 }));
 
